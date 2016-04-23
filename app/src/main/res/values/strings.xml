@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">Ubimovil Taxista</string>
+    <string name="title_activity_login">Autenticación</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="login">login</string>
+    <string name="username">username</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="msg_incorrect_login">This email or password is incorrect.</string>
+    <string name="msg_network_error">There was a connection error, please try again.</string>
+    <string name="msg_confirm_set_car">Do you want to use this vehicle?</string>
+    <string name="accept">accept</string>
+
+
+    <string name="msg_assign_service_success">This service was successfully assigned.</string>
+    <string name="msg_assign_service_failed">An error occurred and the service could not be taken.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loading">Loading ...</string>
+    <string name="update_state">Actualizar Estado</string>
+    <string name="msg_update_service_state_failed">Ocurrio un problema al actualizar el estado del servicio.</string>
+    <string name="msg_update_service_state_success">El cliente ha sido notificado exitosamente.</string>
+    <string name="msg_error_occurred">There was a connection error.</string>
+
+
+    <string-array name="states_accepted">
+        <item>I am on the way</item>
+        <item>I have arrived</item>
+        <item>Welcome on board</item>
+        <item>Completed</item>
+    </string-array>
+
+    <string-array name="states_on_the_way">
+        <item>I have arrived</item>
+        <item>Welcome on board</item>
+        <item>Completed</item>
+    </string-array>
+
+    <string-array name="states_arrived">
+        <item>Welcome on board</item>
+        <item>Completed</item>
+    </string-array>
+
+    <string-array name="states_on_board">
+        <item>Completed</item>
+    </string-array>
+    <string name="title_activity_blanck">BlanckActivity</string>
+    <string name="msg_assign_service_already_taken">This service was already assigned to another driver.</string>
+    <string name="msg_empty_services">You don\'t have any pending services.</string>
+    <string name="empty_services">Empty Services</string>
+    <string name="msg_send_alarm">Send ALARM  request</string>
+    <string name="msg_alarm_acive">¡You are now in ALARM state!</string>
+    <string name="cancel">cancel</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="forgot_password">Forgot your password ?</string>
+    <string name="welcome">Welcome</string>
+    <string name="select_vehicle">Please select the vehicle that will drive today.</string>
+    <string name="next">Continuar</string>
+
+
+    <string-array name="plates">
+        <item>ABC 123</item>
+        <item>ABC 123</item>
+        <item>ABC 123</item>
+        <item>Completed</item>
+    </string-array>
+
+</resources>
