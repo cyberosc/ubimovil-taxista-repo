@@ -45,7 +45,7 @@ public class CarsActivity extends AppCompatActivity implements CarsAdapter.OnRec
 
 
         //Initialize UI
-        carsRecyclerView = (RecyclerView) findViewById(R.id.recycler_cars);
+        //carsRecyclerView = (RecyclerView) findViewById(R.id.recycler_cars);
         carsRecyclerView.setHasFixedSize(true);
         carsRecyclerView.addItemDecoration(new DividerItemDecoration(this, null));
         carsRecyclerView.setItemAnimator(new DefaultItemAnimator());

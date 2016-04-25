@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!-- <?xml version="1.0" encoding="utf-8"?> -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.com.acktos.ubimoviltaxista">
 
@@ -55,7 +55,6 @@
         <service
             android:name=".gcm.RegistrationIntentService"
             android:exported="false" />
-
         <receiver
             android:name=".receivers.AlarmReceiver"
             android:exported="false" />
@@ -66,7 +65,6 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
         <service
             android:name=".services.UpdateCurrentPositionService"
             android:exported="false" />
@@ -74,18 +72,23 @@
         <activity
             android:name=".presentation.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
         <activity
-            android:name=".presentation.FullscreenActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_fullscreen"
-            android:theme="@style/FullscreenTheme" />
-        <activity android:name=".presentation.CarsActivity" />
+            android:name=".presentation.CarsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+
         <activity
             android:name=".presentation.WakeUpRequestActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".services.AcceptRequestService"
@@ -103,14 +106,26 @@
         <activity
             android:name=".presentation.NavigationActivity"
             android:label="@string/title_activity_navigation"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".presentation.TrackingActivity">
 
         </activity>
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".presentation.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".presentation.BalanceActivity"></activity>
     </application>
 
 </manifest>

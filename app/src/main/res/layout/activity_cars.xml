@@ -8,7 +8,7 @@
     android:paddingRight="52dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="co.com.acktos.ubimoviltaxista.presentation.CarsActivity"
-    android:background="@color/colorPrimary">
+    android:background="@color/color_ubimovil_yellow">
 
    <!-- <android.support.v7.widget.RecyclerView
 
@@ -31,20 +31,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/welcome"
-            android:textColor="@color/colorPrimaryText"
+            android:textColor="@color/color_ubimovil_grey_900"
             style="@style/TextAppearance.AppCompat.Small"
             android:textStyle="bold"
-        android:layout_above="@+id/lbl_select_vehicle"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/textView2" />
+            android:layout_above="@+id/lbl_select_vehicle"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/textView2" />
 
     <TextView
         android:id="@+id/lbl_select_vehicle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/select_vehicle"
-        android:textColor="@color/colorPrimaryText"
+        android:textColor="@color/color_ubimovil_grey_900"
         style="@style/TextAppearance.AppCompat.Small"
         android:layout_centerInParent="true"
         />
@@ -66,7 +66,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_car_24dp"
-            android:tint="@color/white" />
+            android:tint="@color/color_ubimovil_grey_50" />
         
         <Spinner
             android:layout_weight="2"
