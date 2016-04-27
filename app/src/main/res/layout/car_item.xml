@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
 
-    <ImageView
+   <!-- <ImageView
         android:id="@+id/img_car"
         android:layout_width="110dp"
         android:layout_height="78dp"
@@ -91,7 +91,7 @@
 
 
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
 </RelativeLayout>

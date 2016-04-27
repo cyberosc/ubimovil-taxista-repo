@@ -65,7 +65,7 @@
     <string name="empty_services">Empty Services</string>
     <string name="msg_send_alarm">Send ALARM  request</string>
     <string name="msg_alarm_acive">¡You are now in ALARM state!</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">Cancel</string>
     <string name="title_activity_navigation">NavigationActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -75,7 +75,7 @@
     <string name="forgot_password">Forgot your password ?</string>
     <string name="welcome">Welcome</string>
     <string name="select_vehicle">Please select the vehicle that will drive today.</string>
-    <string name="next">Continuar</string>
+    <string name="next">Next</string>
     <string name="customer_info">Customer Info</string>
 
 
@@ -86,7 +86,9 @@
         <item>Completed</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
-    <string name="code">Código</string>
-    <string name="active_card">Tarjeta Activa</string>
+    <string name="code">Code</string>
+    <string name="active_card">Active Card</string>
+    <string name="now">Now</string>
+    <string name="sheduled">sheduled</string>
 
 </resources>

@@ -9,7 +9,6 @@ public class Config {
     //DEBUG TAG
     public final static String DEBUG_TAG="ubimovilTaxistaDebug";
 
-
     //PREFERENCES
     public static final String SENT_TOKEN_TO_SERVER = "sentTokenToServer";
     public static final String REGISTRATION_COMPLETE = "registrationComplete";
@@ -37,6 +36,9 @@ public class Config {
     public static final String  FILE_DRIVER_PROFILE="driver_profile.json";
 
 
+    //SERVICES STATES
+    public static final String  SERVICE_TYPE_NOW="inmediato";
+    public static final String  SERVICE_TYPE_SHEDULED="reservado";
 
     // API END POINTS
     public enum API{
@@ -112,7 +114,7 @@ public class Config {
     public final static String STATE_ARRIVED="Arrived";
     public final static String STATE_ON_BOARD="On Board";
     public final static String STATE_COMPLETED="Completed";
-    public final static String STATE_CANCELLED="Cancelled";
+    public final static String STATE_CANCELLED="Canceled";
 
 
 

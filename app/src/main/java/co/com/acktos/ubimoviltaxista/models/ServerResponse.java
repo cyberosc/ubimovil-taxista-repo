@@ -12,7 +12,7 @@ public class ServerResponse {
     private String message;
 
     public static final String KEY_RESPONSE="response";
-    public static final String KEY_RESPONSE_MESSAGE="message";
+    public static final String KEY_RESPONSE_MESSAGE="msg";
     public static final String KEY_RESPONSE_CODE="code";
 
     public ServerResponse(String responseObject){

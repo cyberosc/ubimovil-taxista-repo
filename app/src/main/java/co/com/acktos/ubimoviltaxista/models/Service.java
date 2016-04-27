@@ -1,9 +1,11 @@
 package co.com.acktos.ubimoviltaxista.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Acktos on 3/2/16.
  */
-public class Service {
+public class Service  implements Serializable{
 
 
     private String id;

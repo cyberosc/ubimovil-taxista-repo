@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -15,9 +16,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -30,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.com.acktos.ubimoviltaxista.R;
+import co.com.acktos.ubimoviltaxista.android.DividerItemDecoration;
 import co.com.acktos.ubimoviltaxista.app.Config;
 import co.com.acktos.ubimoviltaxista.controllers.ServicesController;
 import co.com.acktos.ubimoviltaxista.gcm.RegistrationIntentService;
@@ -56,6 +60,16 @@ public class MainActivity extends AppCompatActivity implements ServicesAdapter.O
 
 
     //UI References
+    private View contNowService;
+    private View contSheduledService;
+    private TextView customerNameView;
+    private TextView idServiceView;
+    private TextView stateServiceView;
+    private TextView dateServiceView;
+    private TextView pickupServiceView;
+
+
+
     private RecyclerView servicesRecyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter recyclerAdapter;
@@ -79,6 +93,16 @@ public class MainActivity extends AppCompatActivity implements ServicesAdapter.O
         fabAlarm=(FloatingActionButton)findViewById(R.id.fab_alarm);
         emptyStateView=findViewById(R.id.empty_services);
         servicesRecyclerView = (RecyclerView) findViewById(R.id.recycler_services);
+        contNowService=findViewById(R.id.cont_now_service);
+        contSheduledService=findViewById(R.id.cont_sheduled_service);
+
+        customerNameView=(TextView)findViewById(R.id.lbl_service_now_user);
+        idServiceView=(TextView)findViewById(R.id.lbl_service_now_id);
+        stateServiceView=(TextView)findViewById(R.id.lbl_service_now_state);
+        dateServiceView=(TextView)findViewById(R.id.lbl_service_now_time);
+        pickupServiceView=(TextView)findViewById(R.id.lbl_service_now_pickup);
+
+        assert servicesRecyclerView != null;
         servicesRecyclerView.setHasFixedSize(true);
 
         //servicesRecyclerView.addItemDecoration(new DividerItemDecoration(this, null));
@@ -88,8 +112,6 @@ public class MainActivity extends AppCompatActivity implements ServicesAdapter.O
 
 
         //Setup FAB
-
-
         fabAlarm.setOnTouchListener(new View.OnTouchListener() {
 
             private int longClickDuration = 4000;
@@ -106,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements ServicesAdapter.O
                         fabAlarm.setImageDrawable(ContextCompat.getDrawable(
                                 MainActivity.this, R.drawable.ic_alarm_white_24px));
                         fabAlarm.setBackgroundTintList(
-                                ColorStateList.valueOf(getResources().getColor(R.color.color_red_material)));
+                                ColorStateList.valueOf(getResources().getColor(R.color.color_ubimovil_red_300)));
 
                         Intent sendAlarmIntent= new Intent(MainActivity.this, SendAlarmService.class);
                         startService(sendAlarmIntent);
@@ -117,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements ServicesAdapter.O
                                 fabAlarm.setImageDrawable(ContextCompat.getDrawable(
                                         MainActivity.this, R.drawable.ic_alarm_24px));
                                 fabAlarm.setBackgroundTintList(
-                                        ColorStateList.valueOf(getResources().getColor(R.color.color_fab_alarm)));
+                                        ColorStateList.valueOf(getResources().getColor(R.color.color_ubimovil_red)));
                             }
                         }, 4000);
 
@@ -151,16 +173,6 @@ public class MainActivity extends AppCompatActivity implements ServicesAdapter.O
             }
         });
 
-        /*fabAlarm.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-                Toast.makeText(MainActivity.this, "FAB long press", Toast.LENGTH_LONG).show();
-                return false;
-            }
-        });*/
-
-
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
             isGcmRegisterInProgress=true;
@@ -187,9 +199,6 @@ public class MainActivity extends AppCompatActivity implements ServicesAdapter.O
         checkPlayServices();
     }
 
-
-
-
     @Override
     protected void onStop() {
         super.onStop();
@@ -204,9 +213,30 @@ public class MainActivity extends AppCompatActivity implements ServicesAdapter.O
                 if(services!=null){
                     Log.i(Config.DEBUG_TAG, "on response get cars:" + services.size());
                     mServices = services;
-                    emptyStateView.setVisibility(View.GONE);
+                    Service currentService;
+
+                    for (Service serviceItem: services){
+
+                        if(serviceItem.getType().equals(Config.SERVICE_TYPE_NOW)){
+
+                            currentService=serviceItem;
+                            services.remove(serviceItem);
+                            updateNowServiceUI(currentService);
+                        }
+                    }
+
                     recyclerAdapter = new ServicesAdapter(MainActivity.this, services, MainActivity.this);
                     servicesRecyclerView.setAdapter(recyclerAdapter);
+
+                    if(services.size()<=0){
+
+                        contSheduledService.setVisibility(View.GONE);
+                    }else{
+                        contSheduledService.setVisibility(View.VISIBLE);
+                    }
+
+                    emptyStateView.setVisibility(View.GONE);
+
                 }else{
 
                     List<Service> emptyServices=new ArrayList<>();
@@ -227,6 +257,25 @@ public class MainActivity extends AppCompatActivity implements ServicesAdapter.O
                                 Snackbar.LENGTH_LONG);
             }
         });
+    }
+
+    private void updateNowServiceUI(Service service){
+
+        if(service!=null){
+
+            customerNameView.setText(service.getClient());
+            idServiceView.setText("ID: "+service.getId());
+            stateServiceView.setText(service.getState());
+            dateServiceView.setText(service.getTime());
+            pickupServiceView.setText(service.getPickup());
+
+            contNowService.setVisibility(View.VISIBLE);
+
+        }else{
+
+            contNowService.setVisibility(View.VISIBLE);
+        }
+
     }
 
     private void setupBroadCastReceiver(){
@@ -275,11 +324,19 @@ public class MainActivity extends AppCompatActivity implements ServicesAdapter.O
 
         if(mServices!=null){
 
-            showStatesList(mServices.get(position));
+            launchTrackingActivity(mServices.get(position));
 
         }else{
             Log.i(Config.DEBUG_TAG,"(OnRecyclerViewClick-MainActivity) services is null");
         }
+
+    }
+
+    private void launchTrackingActivity(Service service){
+
+        Intent i=new Intent(this,TrackingActivity.class);
+        i.putExtra(Config.KEY_SERVICE,service);
+        startActivity(i);
 
     }
 

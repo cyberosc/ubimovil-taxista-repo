@@ -69,12 +69,13 @@
             android:tint="@color/color_ubimovil_grey_50" />
         
         <Spinner
+            android:id="@+id/spinner_cars"
             android:layout_weight="2"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:entries="@array/plates" />
+            android:layout_height="match_parent" />
 
         <Button
+            android:id="@+id/btn_select_car"
             android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="match_parent"

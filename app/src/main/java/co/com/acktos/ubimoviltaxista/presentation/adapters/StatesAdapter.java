@@ -16,35 +16,31 @@ import java.util.List;
 import co.com.acktos.ubimoviltaxista.R;
 import co.com.acktos.ubimoviltaxista.app.Config;
 import co.com.acktos.ubimoviltaxista.models.Car;
+import co.com.acktos.ubimoviltaxista.models.State;
 
 /**
  * Created by Acktos on 2/24/16.
  */
-public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
+public class StatesAdapter extends RecyclerView.Adapter<StatesAdapter.ViewHolder> {
 
-    private List<Car> cars;
+    private List<State> states;
     private static OnRecyclerViewClickListener onRecyclerViewClickListener;
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView carType;
-        public TextView carPlate;
-        public TextView carBrand;
-        public ImageView carTypeImg;
-
+        public TextView mStateNameView;
+        public ImageView mStateIconView;
 
 
         public ViewHolder(View itemView) {
 
             super(itemView);
-            //carType=(TextView)itemView.findViewById(R.id.txt_car_type);
-            //carPlate=(TextView)itemView.findViewById(R.id.txt_car_plate);
-            //carBrand=(TextView)itemView.findViewById(R.id.txt_car_brand);
-            //carTypeImg=(ImageView)itemView.findViewById(R.id.img_car);
+
+            mStateNameView=(TextView)itemView.findViewById(R.id.state_item_name);
+            mStateIconView=(ImageView)itemView.findViewById(R.id.state_item_icon);
 
             itemView.setOnClickListener(this);
-
         }
 
         @Override
@@ -56,23 +52,23 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
         }
     }
 
-    public CarsAdapter(Context context,List<Car> cars,OnRecyclerViewClickListener onRecyclerViewClick){
+    public StatesAdapter(Context context,List<State> states,OnRecyclerViewClickListener onRecyclerViewClick){
 
         this.context=context;
-        this.cars=cars;
+        this.states=states;
         this.onRecyclerViewClickListener=onRecyclerViewClick;
     }
 
 
     @Override
     public int getItemCount() {
-        return cars.size();
+        return states.size();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.car_item, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.state_item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
@@ -80,14 +76,12 @@ public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
 
-        viewHolder.carType.setText(cars.get(i).getType());
-        viewHolder.carPlate.setText(cars.get(i).getPlate());
-        viewHolder.carBrand.setText(cars.get(i).getBrand());
+        viewHolder.mStateNameView.setText(states.get(i).getName());
 
-        /*Picasso.with(context)
-                .load(cars.get(i).getTypeImg())
-                .placeholder(R.drawable.taxi_vip)
-                .into(viewHolder.carTypeImg);*/
+        Picasso.with(context)
+                .load(states.get(i).getIconResource())
+                .placeholder(R.drawable.ic_car_24dp)
+                .into(viewHolder.mStateIconView);
     }
 
     public interface OnRecyclerViewClickListener

@@ -1,9 +1,12 @@
 package co.com.acktos.ubimoviltaxista.services;
 
+import android.Manifest;
 import android.app.IntentService;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 import com.firebase.client.Firebase;
@@ -27,7 +30,7 @@ import co.com.acktos.ubimoviltaxista.models.Driver;
  * TODO: Customize class - update intent actions and extra parameters.
  */
 public class UpdateCurrentPositionService extends IntentService implements GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener {
 
 
     //Android Utils
@@ -36,7 +39,7 @@ public class UpdateCurrentPositionService extends IntentService implements Googl
 
     //ATTRIBUTES
     private Location mLastLocation;
-    private String serviceId=null;
+    private String serviceId = null;
     private Driver driver;
 
 
@@ -55,45 +58,53 @@ public class UpdateCurrentPositionService extends IntentService implements Googl
     }
 
     @Override
-    protected void onHandleIntent(Intent intent)  {
+    protected void onHandleIntent(Intent intent) {
 
-        Log.i(Config.DEBUG_TAG,"Entry on UpdateCurrentPositionService");
+        Log.i(Config.DEBUG_TAG, "Entry on UpdateCurrentPositionService");
 
-        driversController=new DriversController(this);
-        driver=driversController.getDriver();
+        driversController = new DriversController(this);
+        driver = driversController.getDriver();
 
         Firebase.setAndroidContext(this); //Initialize Firebase
         driversRef = new Firebase("https://ubimovil.firebaseio.com/drivers");
 
 
         //get service id
-        Bundle extras= intent.getExtras();
+        Bundle extras = intent.getExtras();
 
-        if(extras!=null){
+        if (extras != null) {
 
-            serviceId=extras.getString(Config.KEY_SERVICE);
+            serviceId = extras.getString(Config.KEY_SERVICE);
         }
 
 
-        if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(this)== ConnectionResult.SUCCESS){
+        if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
             buildGoogleApiClient();
             if (mGoogleApiClient != null) {
 
                 mGoogleApiClient.connect();
 
-            }else{
-                Log.i(Config.DEBUG_TAG,"googleApi client is null in UpdateCurrentPositionService");
+            } else {
+                Log.i(Config.DEBUG_TAG, "googleApi client is null in UpdateCurrentPositionService");
             }
 
-        }else{
+        } else {
 
-            Log.i(Config.DEBUG_TAG,"Google play service is not available in updateCurrentPositionService" );
+            Log.i(Config.DEBUG_TAG, "Google play service is not available in updateCurrentPositionService");
         }
     }
 
     private void getLocation() {
 
         Log.i(Config.DEBUG_TAG, "Entry to getLocation");
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+
+            return;
+        }
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
         if (location != null) {

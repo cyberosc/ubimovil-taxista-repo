@@ -10,13 +10,13 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/ic_taxi_24dp"
-        android:tint="@color/colorSecondaryTextLight"
+        android:tint="@color/color_ubimovil_grey_500"
         android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorSecondaryText"
+        android:textColor="@color/color_ubimovil_grey_500"
         android:textStyle="bold"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="10dp"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/colorSecondaryText"
+        android:textColor="@color/color_ubimovil_grey_500"
         android:text="@string/msg_empty_services"
         android:layout_gravity="center_horizontal" />
 

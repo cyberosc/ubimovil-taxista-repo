@@ -9,165 +9,18 @@
     tools:context=".presentation.MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal"
-
-        android:weightSum="2">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/lbl_service_state"
-            android:text="Driver on the way"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorSecondaryText"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/lbl_service_id"
-            android:text="ID: 2544"
-            android:textSize="12sp"
-            android:textAllCaps="true"
-            android:gravity="end"
-            android:textColor="@color/colorSecondaryTextLight"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal"
-        android:weightSum="12">
-
-        <ImageView
-            android:layout_weight="2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:tint="@color/colorPrimaryText"
-            android:src="@drawable/ic_customer_24dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="10"
-            android:layout_height="wrap_content"
-            android:id="@+id/lbl_user"
-            android:text="Sebastian Calderon"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:textColor="@color/colorPrimaryText"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal"
-        android:weightSum="12">
-
-        <ImageView
-            android:layout_weight="2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:tint="@color/colorPrimaryText"
-            android:src="@drawable/ic_schedule_24dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp" />
-
-        <TextView
-            android:text="Time"
-            android:layout_weight="4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryText"
-            android:textStyle="bold"
-            app:layout_column="1"
-            app:layout_row="0"
-            android:textSize="14sp"
-            app:layout_columnWeight="1"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"
-            android:id="@+id/lbl_time"
-            android:text="30/02/16 11:20"
-            android:gravity="end"
-            android:textSize="14sp"
-            android:textColor="@color/colorPrimaryText"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal"
-        android:weightSum="12">
-
-        <ImageView
-            android:layout_weight="2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:tint="@color/colorPrimaryText"
-            android:src="@drawable/ic_place_24dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp" />
-
-        <TextView
-            android:text="Pick up"
-            android:layout_weight="4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryText"
-            android:textStyle="bold"
-            app:layout_column="1"
-            app:layout_row="0"
-            android:textSize="14sp"
-            app:layout_columnWeight="1"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"
-            android:id="@+id/lbl_pickup"
-            android:text="Carrera 32 B # 11 - 46"
-            android:gravity="end"
-            android:textSize="14sp"
-            android:textColor="@color/colorPrimaryText"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryLight">
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="@color/color_ubimovil_yellow_200">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
+
             android:orientation="horizontal"
 
             android:weightSum="2">
@@ -180,7 +33,7 @@
                 android:text="Driver on the way"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:textColor="@color/colorSecondaryText"/>
+                android:textColor="@color/color_ubimovil_grey_800"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -191,7 +44,7 @@
                 android:textSize="12sp"
                 android:textAllCaps="true"
                 android:gravity="end"
-                android:textColor="@color/colorSecondaryTextLight"/>
+                android:textColor="@color/color_ubimovil_grey_500"/>
 
         </LinearLayout>
 
@@ -205,23 +58,23 @@
             android:weightSum="12">
 
             <ImageView
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:tint="@color/colorPrimaryText"
+                android:tint="@color/color_ubimovil_grey_900"
                 android:src="@drawable/ic_customer_24dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp" />
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="10"
+                android:layout_weight="11"
                 android:layout_height="wrap_content"
                 android:id="@+id/lbl_user"
                 android:text="Sebastian Calderon"
                 android:textStyle="bold"
                 android:textSize="14sp"
-                android:textColor="@color/colorPrimaryText"/>
+                android:textColor="@color/color_ubimovil_grey_900"/>
 
         </LinearLayout>
 
@@ -235,10 +88,10 @@
             android:weightSum="12">
 
             <ImageView
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:tint="@color/colorPrimaryText"
+                android:tint="@color/color_ubimovil_grey_900"
                 android:src="@drawable/ic_schedule_24dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp" />
@@ -248,7 +101,7 @@
                 android:layout_weight="4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/color_ubimovil_grey_900"
                 android:textStyle="bold"
                 app:layout_column="1"
                 app:layout_row="0"
@@ -257,13 +110,13 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="6"
+                android:layout_weight="7"
                 android:layout_height="wrap_content"
                 android:id="@+id/lbl_time"
                 android:text="30/02/16 11:20"
                 android:gravity="end"
                 android:textSize="14sp"
-                android:textColor="@color/colorPrimaryText"/>
+                android:textColor="@color/color_ubimovil_grey_900"/>
 
         </LinearLayout>
 
@@ -273,14 +126,15 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
             android:orientation="horizontal"
             android:weightSum="12">
 
             <ImageView
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:tint="@color/colorPrimaryText"
+                android:tint="@color/color_ubimovil_grey_900"
                 android:src="@drawable/ic_place_24dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp" />
@@ -290,7 +144,7 @@
                 android:layout_weight="4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryText"
+                android:textColor="@color/color_ubimovil_grey_900"
                 android:textStyle="bold"
                 app:layout_column="1"
                 app:layout_row="0"
@@ -299,21 +153,22 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="6"
+                android:layout_weight="7"
                 android:layout_height="wrap_content"
                 android:id="@+id/lbl_pickup"
                 android:text="Carrera 32 B # 11 - 46"
                 android:gravity="end"
                 android:textSize="14sp"
-                android:textColor="@color/colorPrimaryText"/>
+                android:textColor="@color/color_ubimovil_grey_900"/>
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_ubimovil_grey_500"/>
+
     </LinearLayout>
-
-
-
-
 
 
 </LinearLayout>

@@ -317,7 +317,6 @@ public class DriversController {
                             Toast.makeText(
                                     context,context.getString(R.string.msg_error_occurred),Toast.LENGTH_LONG).show();
                         } else {
-                            Log.i(Config.DEBUG_TAG, "onComplete firebase panic: Panic message don't could sent");
 
                             Toast.makeText(
                                     context, context.getString(R.string.msg_alarm_acive), Toast.LENGTH_LONG).show();
