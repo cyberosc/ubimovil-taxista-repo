@@ -83,6 +83,7 @@ public class CarsActivity extends AppCompatActivity implements CarsAdapter.OnRec
                     Log.i(Config.DEBUG_TAG, "selected car:"+car.getPlate());
 
                     new MaterialDialog.Builder(CarsActivity.this)
+                            .title(getString(R.string.selected_vehicle))
                             .content(R.string.msg_confirm_set_car)
                             .positiveText(R.string.accept)
                             .onPositive(new MaterialDialog.SingleButtonCallback() {

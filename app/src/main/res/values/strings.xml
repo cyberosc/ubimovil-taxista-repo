@@ -90,5 +90,8 @@
     <string name="active_card">Active Card</string>
     <string name="now">Now</string>
     <string name="sheduled">sheduled</string>
+    <string name="msg_progress_update_state">Updating state</string>
+    <string name="plase_wait">Plase wait ...</string>
+    <string name="selected_vehicle">Selected Vehicle</string>
 
 </resources>

@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><!-- <?xml version="1.0" encoding="utf-8"?> -->
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <?xml version="1.0" encoding="utf-8"?> -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="co.com.acktos.ubimoviltaxista">
+    package="co.com.acktos.ubimoviltaxista" >
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -24,13 +25,13 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity android:name=".presentation.MainActivity" />
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
+            android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 
@@ -40,14 +41,14 @@
 
         <service
             android:name=".gcm.GcmListener"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
         <service
             android:name=".gcm.MyInstanceIDListenerService"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
@@ -55,16 +56,18 @@
         <service
             android:name=".gcm.RegistrationIntentService"
             android:exported="false" />
+
         <receiver
             android:name=".receivers.AlarmReceiver"
             android:exported="false" />
         <receiver
             android:name=".receivers.BootCompletedReceiver"
-            android:enabled="false">
+            android:enabled="false" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <service
             android:name=".services.UpdateCurrentPositionService"
             android:exported="false" />
@@ -79,13 +82,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".presentation.CarsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
-
         <activity
             android:name=".presentation.WakeUpRequestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -107,8 +106,7 @@
             android:name=".presentation.NavigationActivity"
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".presentation.TrackingActivity">
-
+        <activity android:name=".presentation.TrackingActivity" >
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -125,7 +123,7 @@
         <activity
             android:name=".presentation.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".presentation.BalanceActivity"></activity>
+        <activity android:name=".presentation.BalanceActivity" />
     </application>
 
 </manifest>

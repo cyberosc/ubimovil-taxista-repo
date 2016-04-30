@@ -77,11 +77,18 @@ public class StatesAdapter extends RecyclerView.Adapter<StatesAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
 
         viewHolder.mStateNameView.setText(states.get(i).getName());
+        viewHolder.mStateIconView.setImageResource(states.get(i).getIconResource());
 
-        Picasso.with(context)
+       /* Picasso.with(context)
                 .load(states.get(i).getIconResource())
                 .placeholder(R.drawable.ic_car_24dp)
-                .into(viewHolder.mStateIconView);
+                .into(viewHolder.mStateIconView);*/
+    }
+
+    public void swap(List<State> states){
+        this.states.clear();
+        this.states.addAll(states);
+        notifyDataSetChanged();
     }
 
     public interface OnRecyclerViewClickListener

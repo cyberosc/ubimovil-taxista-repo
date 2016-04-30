@@ -116,6 +116,14 @@ public class Config {
     public final static String STATE_COMPLETED="Completed";
     public final static String STATE_CANCELLED="Canceled";
 
+    public final static String ID_STATE_PENDING="1";
+    public final static String ID_STATE_ACCEPTED="2";
+    public final static String ID_STATE_ON_THE_WAY="3";
+    public final static String ID_STATE_ARRIVED="4";
+    public final static String ID_STATE_ON_BOARD="5";
+    public final static String ID_STATE_COMPLETED="6";
+    public final static String ID_STATE_CANCELLED="7";
+
 
 
 }

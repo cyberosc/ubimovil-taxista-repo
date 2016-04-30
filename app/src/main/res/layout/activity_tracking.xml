@@ -93,14 +93,14 @@
         android:id="@+id/bottom_sheet_service_states"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         app:layout_behavior="@string/bottom_sheet_behavior"
         app:behavior_hideable="true"
         android:background="@color/color_ubimovil_grey_50"
-        app:behavior_peekHeight="64dp">
+        app:behavior_peekHeight="52dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
