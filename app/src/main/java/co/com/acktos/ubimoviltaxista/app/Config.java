@@ -37,8 +37,8 @@ public class Config {
 
 
     //SERVICES STATES
-    public static final String  SERVICE_TYPE_NOW="inmediato";
-    public static final String  SERVICE_TYPE_SHEDULED="reservado";
+    public static final String  SERVICE_TYPE_NOW="Inmediato";
+    public static final String  SERVICE_TYPE_SHEDULED="Reservado";
 
     // API END POINTS
     public enum API{

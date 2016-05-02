@@ -1,7 +1,10 @@
 package co.com.acktos.ubimoviltaxista.presentation;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +15,13 @@ import android.view.View;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +35,8 @@ import co.com.acktos.ubimoviltaxista.presentation.adapters.ServicesAdapter;
 import co.com.acktos.ubimoviltaxista.presentation.adapters.StatesAdapter;
 
 
-public class TrackingActivity extends AppCompatActivity implements StatesAdapter.OnRecyclerViewClickListener {
+public class TrackingActivity extends AppCompatActivity
+        implements StatesAdapter.OnRecyclerViewClickListener, OnMapReadyCallback {
 
 
     private List<State> mStates;
@@ -42,16 +53,18 @@ public class TrackingActivity extends AppCompatActivity implements StatesAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
 
-        servicesController=new ServicesController(this);
+        servicesController = new ServicesController(this);
 
         Intent intent = getIntent();
-        mService=(Service)intent.getSerializableExtra(Config.KEY_SERVICE);
+        mService = (Service) intent.getSerializableExtra(Config.KEY_SERVICE);
 
+        SupportMapFragment mDriverMap = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.tracking_map);
+        mDriverMap.getMapAsync(this);
     }
 
     @Override
 
-    protected void onResume(){
+    protected void onResume() {
 
         super.onResume();
         setupStatesSheet();
@@ -60,25 +73,25 @@ public class TrackingActivity extends AppCompatActivity implements StatesAdapter
     private void setupStatesSheet() {
 
         mStates = getStates();
-        String stateId=getStateIdFromTag(mService.getState());
+        String stateId = getStateIdFromTag(mService.getState());
 
-        Log.i(Config.DEBUG_TAG, "setupStatesSheet: stateId:"+stateId);
+        Log.i(Config.DEBUG_TAG, "setupStatesSheet: stateId:" + stateId);
 
-        mAvailableStates= getAvailableStates(findState(stateId));
+        mAvailableStates = getAvailableStates(findState(stateId));
         mStatesView = (RecyclerView) findViewById(R.id.recycler_states);
         assert mStatesView != null;
         mStatesView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mStatesView.setLayoutManager(mLayoutManager);
 
-        mRecyclerAdapter = new StatesAdapter(this,mAvailableStates,this);
+        mRecyclerAdapter = new StatesAdapter(this, mAvailableStates, this);
         mStatesView.setAdapter(mRecyclerAdapter);
 
     }
 
-    private void updateStatesSheet(State state){
+    private void updateStatesSheet(State state) {
 
-        mAvailableStates=getAvailableStates(state);
+        mAvailableStates = getAvailableStates(state);
         mRecyclerAdapter.swap(mAvailableStates);
     }
 
@@ -124,9 +137,9 @@ public class TrackingActivity extends AppCompatActivity implements StatesAdapter
         return availableStates;
     }
 
-    public static String getStateIdFromTag(String tag){
+    public static String getStateIdFromTag(String tag) {
 
-        switch(tag){
+        switch (tag) {
 
             case Config.STATE_ACCEPTED:
                 return Config.ID_STATE_ACCEPTED;
@@ -151,9 +164,9 @@ public class TrackingActivity extends AppCompatActivity implements StatesAdapter
         launchProgressDialog();
     }
 
-    private void updateStateOnBackend(final State state){
+    private void updateStateOnBackend(final State state) {
 
-        final Snackbar mSnackBar= Snackbar
+        final Snackbar mSnackBar = Snackbar
                 .make(
                         mStatesView,
                         R.string.msg_update_service_state_failed,
@@ -175,7 +188,7 @@ public class TrackingActivity extends AppCompatActivity implements StatesAdapter
                     @Override
                     public void onResponse(String result) {
 
-                        if(mProgressDialog!=null){
+                        if (mProgressDialog != null) {
                             mProgressDialog.dismiss();
                         }
 
@@ -197,7 +210,7 @@ public class TrackingActivity extends AppCompatActivity implements StatesAdapter
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
 
-                        if(mProgressDialog!=null){
+                        if (mProgressDialog != null) {
                             mProgressDialog.dismiss();
                         }
                         mSnackBar.setText(R.string.msg_update_service_state_failed);
@@ -206,7 +219,7 @@ public class TrackingActivity extends AppCompatActivity implements StatesAdapter
                 });
     }
 
-    private void launchProgressDialog(){
+    private void launchProgressDialog() {
 
         mProgressDialog = new MaterialDialog.Builder(this)
                 .title(R.string.msg_progress_update_state)
@@ -216,4 +229,35 @@ public class TrackingActivity extends AppCompatActivity implements StatesAdapter
                 .autoDismiss(false)
                 .show();
     }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        googleMap.setPadding(0,50,16,80);
+
+        LatLng sydney = new LatLng(-33.867, 151.206);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        googleMap.setMyLocationEnabled(true);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13));
+
+        googleMap.addMarker(new MarkerOptions()
+                .title("Sydney")
+                .snippet("The most populous city in Australia.")
+                .position(sydney));
+
+
+
+    }
+
 }
+

@@ -78,12 +78,11 @@
 
         </LinearLayout>
 
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/map"
-            tools:context=".MapsActivity"
+            android:id="@+id/tracking_map"
+            tools:context=".TrackingActivity"
             android:name="com.google.android.gms.maps.SupportMapFragment" />
 
 

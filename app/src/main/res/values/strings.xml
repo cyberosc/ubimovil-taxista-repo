@@ -93,5 +93,9 @@
     <string name="msg_progress_update_state">Updating state</string>
     <string name="plase_wait">Plase wait ...</string>
     <string name="selected_vehicle">Selected Vehicle</string>
+    <string name="services">Services</string>
+    <string name="change_vehicle">change_vehicle</string>
+    <string name="purchase_credits">Purchase Credits</string>
+    <string name="logout">Logout</string>
 
 </resources>
