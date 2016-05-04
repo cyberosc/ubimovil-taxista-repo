@@ -12,7 +12,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/driver_photo"
+        android:id="@+id/img_nav_driver_photo"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -28,7 +28,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_nav_driver_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_ubimovil_yellow"

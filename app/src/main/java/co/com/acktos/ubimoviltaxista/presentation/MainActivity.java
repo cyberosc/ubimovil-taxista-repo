@@ -27,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +44,10 @@ import java.util.List;
 import co.com.acktos.ubimoviltaxista.R;
 import co.com.acktos.ubimoviltaxista.android.DividerItemDecoration;
 import co.com.acktos.ubimoviltaxista.app.Config;
+import co.com.acktos.ubimoviltaxista.controllers.DriversController;
 import co.com.acktos.ubimoviltaxista.controllers.ServicesController;
 import co.com.acktos.ubimoviltaxista.gcm.RegistrationIntentService;
+import co.com.acktos.ubimoviltaxista.models.Driver;
 import co.com.acktos.ubimoviltaxista.models.Service;
 import co.com.acktos.ubimoviltaxista.presentation.adapters.ServicesAdapter;
 import co.com.acktos.ubimoviltaxista.receivers.AlarmReceiver;
@@ -63,9 +67,12 @@ public class MainActivity extends AppCompatActivity
     //Attributes
     private boolean isGcmRegisterInProgress=false;
     private List<Service> mServices;
+    private Service currentService;
+    private Driver mDriver;
 
     //Components
     ServicesController servicesController;
+    DriversController mDriversController;
 
     //UI References
     private View contNowService;
@@ -75,6 +82,10 @@ public class MainActivity extends AppCompatActivity
     private TextView stateServiceView;
     private TextView dateServiceView;
     private TextView pickupServiceView;
+
+    private ImageView mDriverPhotoView;
+    private TextView mDriverNameView;
+    private TextView mDriverEmailView;
 
     private RecyclerView servicesRecyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -91,6 +102,10 @@ public class MainActivity extends AppCompatActivity
 
         //Initialize Components
         servicesController=new ServicesController(this);
+        mDriversController=new DriversController(this);
+
+        mDriver=mDriversController.getDriver();
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -104,6 +119,13 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+
+        View header = navigationView.getHeaderView(0);
+        mDriverNameView  = (TextView) header.findViewById(R.id.txt_nav_driver_name);
+        mDriverEmailView  = (TextView) header.findViewById(R.id.txt_nav_driver_email);
+        mDriverPhotoView  = (ImageView) header.findViewById(R.id.img_nav_driver_photo);
+
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -130,6 +152,8 @@ public class MainActivity extends AppCompatActivity
         layoutManager = new LinearLayoutManager(this);
         servicesRecyclerView.setLayoutManager(layoutManager);
 
+        // Set driver information on NavigationDrawer
+        updateNavigationHeaderInfo();
 
         //Setup FAB
         fabAlarm.setOnTouchListener(new View.OnTouchListener() {
@@ -278,6 +302,18 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void trackingNowService(View view){
+
+        if(currentService!=null){
+
+            launchTrackingActivity(currentService);
+
+        }else{
+
+            Log.i(Config.DEBUG_TAG, "trackingNowService is null ");
+        }
+    }
+
     private void getServices(){
 
         servicesController.getServices(new Response.Listener<List<Service>>() {
@@ -287,7 +323,6 @@ public class MainActivity extends AppCompatActivity
                 if(services!=null){
                     Log.i(Config.DEBUG_TAG, "on response get cars:" + services.size());
                     mServices = services;
-                    Service currentService;
 
                     for (Service serviceItem: services){
 
@@ -510,7 +545,22 @@ public class MainActivity extends AppCompatActivity
                 });
     }
 
+    private void updateNavigationHeaderInfo(){
 
+        if(mDriver!=null){
+
+            mDriverNameView.setText(mDriver.getName());
+            mDriverEmailView.setText(mDriver.getEmail());
+
+            Picasso.with(this)
+                    .load(mDriver.getPhoto())
+                    .resize(50, 50)
+                    .centerCrop()
+                    .placeholder(R.drawable.avatar)
+                    .into(mDriverPhotoView);
+        }
+
+    }
 
 
 

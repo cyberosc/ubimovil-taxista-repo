@@ -51,7 +51,8 @@ public class Config {
         ASSIGN_SERVICE("http://192.34.58.49/assign_service/"),
         REGISTER_GCM_ID("http://192.34.58.49/update_mobileid/"),
         DRIVER_ALARM("http://192.34.58.49/driver_alarm/"),
-        ADD_CREDIT("http://192.34.58.49/add_credit/");
+        PURCHASE_CREDIT("http://192.34.58.49/add_credit/"),
+        GET_LAST_CREDIT("http://192.34.58.49/get_last_credit/");
 
 
         private final String url;
