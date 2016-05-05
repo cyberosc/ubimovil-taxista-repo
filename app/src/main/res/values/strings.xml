@@ -97,5 +97,9 @@
     <string name="change_vehicle">Change Vehicle</string>
     <string name="purchase_credits">Purchase Credits</string>
     <string name="logout">Logout</string>
+    <string name="msg_title_success_purchase_credit">Success Credit</string>
+    <string name="msg_title_failed_purchase_credit">Failed Credit</string>
+    <string name="msg_success_purchase_credit">your credit was successfully activated.</string>
+    <string name="msg_failed_purchase_credit">This card is not valid.</string>
 
 </resources>

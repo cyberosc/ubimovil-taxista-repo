@@ -125,7 +125,7 @@ public class CreditsController {
     }
 
 
-    public void purchaseCredit(final String carId,
+    public void purchaseCredit(final String code,
                        final Response.Listener<String> responseListener,
                        final Response.ErrorListener errorListener){
 
@@ -144,7 +144,7 @@ public class CreditsController {
                     @Override
                     public void onResponse(String response) {
 
-                        Log.d(Config.DEBUG_TAG, "set cars:"+response);
+                        Log.d(Config.DEBUG_TAG, "purchase credit:"+response);
 
                         ServerResponse serverResponse=new ServerResponse(response);
 
@@ -163,7 +163,7 @@ public class CreditsController {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Log.d(Config.DEBUG_TAG, "volley error set car:"+error.getMessage());
+                        Log.d(Config.DEBUG_TAG, "volley error purchase credit:"+error.getMessage());
                         errorListener.onErrorResponse(error);
                     }
                 }){
@@ -172,9 +172,9 @@ public class CreditsController {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
 
-                params.put(Config.KEY_ID, driverId);
-                params.put(Config.KEY_CAR, carId);
-                params.put(Config.KEY_ENCRYPT, Encrypt.md5(driverId + carId+ Config.TOKEN));
+                params.put(Config.KEY_DRIVER_ID, driverId);
+                params.put(Config.KEY_CODE, code);
+                params.put(Config.KEY_ENCRYPT, Encrypt.md5(driverId+code+Config.TOKEN));
 
                 return params;
             }
@@ -184,4 +184,5 @@ public class CreditsController {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(stringReq, TAG_PURCHASE_CREDIT);
     }
+
 }

@@ -113,8 +113,6 @@
 
     </FrameLayout>
 
-
-
     <LinearLayout
         android:id="@+id/cont_recharge_card"
         android:orientation="vertical"
@@ -136,7 +134,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="58dp"
             android:weightSum="5"
             android:orientation="horizontal"
             android:layout_marginTop="8dp">
@@ -150,11 +148,11 @@
                 android:tint="@color/color_ubimovil_grey_50" />
 
             <EditText
+                android:id="@+id/txt_credit_code"
                 android:layout_weight="2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:entries="@array/plates"
-                style="@style/UbimovilYellowTheme"
                 android:hint="@string/code"/>
 
             <Button
@@ -162,11 +160,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:theme="@style/MainButton"
+                android:onClick="onPurchaseCredit"
                 android:text="@string/next"/>
 
         </LinearLayout>
     </LinearLayout>
-
 
 
 </RelativeLayout>
